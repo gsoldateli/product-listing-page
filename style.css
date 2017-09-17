@@ -69,7 +69,7 @@ a {
   left: 0;
   top: 0;
   width: 100%;
-  height: 80vh;
+  padding-top: 45%;
   background: url(images/bg.jpg) no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -175,17 +175,19 @@ a {
 }
 
 .product {
-
-	width: 23%;
+	width: 25%;
 	float: left;
+	box-sizing: border-box;
 	cursor: pointer;
+	background-color: #fff;
 	text-align: center;
-	transition: all 0.1s ease-out;
+	transition: all 0.1s ease-out 0.03s;
+	margin-bottom: 1rem;
 }
 
 .product:hover {
-	transform: scale(1.1);
-	box-shadow: 0 10px 20px #ccc;
+	transform: scale(1.05);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
 }
 
 .product__image {
@@ -249,4 +251,65 @@ a {
 	}
 	
 
+}
+
+@media screen and (max-width: 992px)  {
+	.product {
+		width: 33%;
+	}
+
+	.background-top {
+		padding-top: 100%;
+	}
+	.logo {
+		float: none;
+		text-align: center;
+	}
+	.left-menu-container {
+		float: none;
+		margin: 0 auto;
+	}
+
+	.left-menu-container .menu-list:last-child {
+		float: right;
+		margin-right: 2rem;
+	}
+}
+
+@media screen and (max-width: 668px)  {
+	.product {
+		width: 50%;
+	}
+
+	.left-menu-container .menu-list:last-child {
+		float: left;
+		margin-left: 2rem;
+	}	
+}
+
+@media screen and (max-width: 470px)  {
+	.product {
+		width: 100%;
+	}
+
+	.background-top {
+		padding-top: 130%;
+	}	
+
+	.banner-heading {
+		font-size: 3rem;
+	}
+	
+	.menu-list > li {
+		max-width: 45%;
+    	float: left;
+    }
+
+    .fa.fa-search {
+    	display: none;
+    }
+
+    .menu-list input {
+    	width: 100%;
+    }
 }
