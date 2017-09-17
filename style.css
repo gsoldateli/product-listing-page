@@ -304,12 +304,7 @@ a {
 		max-width: 45%;
     	float: left;
     }
-
-    .fa.fa-search {
-    	display: none;
-    }
-
-    .menu-list input {
-    	width: 100%;
-    }
+	.left-menu-container {
+		display: none;
+	}
 }
