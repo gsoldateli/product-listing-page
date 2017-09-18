@@ -266,7 +266,7 @@ a {
 
 
 .btn-cart-container > input {
-	//display: none;
+	display: none;
 }
 
 .cart-list-container {
