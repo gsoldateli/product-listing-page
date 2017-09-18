@@ -8,6 +8,7 @@ html {
 body {
 	margin: 0;
 	background-color: #F4F4F4;
+	padding-bottom: 5rem;
 }
 
 p {
@@ -255,8 +256,17 @@ a {
 	padding: 1rem 2rem;
 	border-radius: 50px;
 	box-shadow: 1px 1px 6px #333;
+
+	transition: transform .1s ease-out;
 }
 
+.btn-cart-container > label:hover {
+	transform: scale(1.05);
+}
+
+.btn-cart-container > label:active {
+	transform: none;
+}
 .btn-cart-container > label:before {
 	content: "Open Cart";
 	color: #333;
@@ -411,6 +421,13 @@ a {
     line-height: 2.8rem;
     font-size: 1.5rem;
     font-weight: bold;
+
+    transition: all 0.2s ease-out;
+}
+
+.product__quantity.checkout:hover {
+    box-shadow: 0px -2px 29px #333;
+    transform: scale(1.08);
 }
 
 .total-price {
