@@ -390,14 +390,18 @@ a {
 	color: #6d5e5e;
 }
 
-.cart-list-container input[type="number"] {
+.cart-list-container input{
 	border: none;
 	text-align: center;
     padding: 0.5rem 0 0.5rem 1rem;
-    max-width: 3rem;
 	font-size: 1.5rem;
 	font-weight: bold;
 }
+
+.cart-list-container input[type="number"] {
+    max-width: 3rem;
+}
+
 .cart-list-container .product__quantity {
     display: inline-block;
     box-sizing: border-box;
@@ -434,7 +438,8 @@ a {
     color: #fff;
     display: inline-block;
     text-align: center;
-    margin-top: 35%;
+    margin-top: 25%;
+    margin-bottom: 2rem;
     font-size: 2rem;
 }
 
