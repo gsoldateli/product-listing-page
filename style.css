@@ -177,6 +177,7 @@ a {
 
 .product {
 	width: 25%;
+	position: relative;
 	float: left;
 	box-sizing: border-box;
 	cursor: pointer;
@@ -187,9 +188,36 @@ a {
 }
 
 .product:hover {
+	z-index: 1;
 	transform: scale(1.05);
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
 }
+
+.product-list .product:active {
+
+	transform: scale(1);
+}
+/*
+.product-list .product:before {
+	opacity: 0;
+	content: "Item added!";
+	position: absolute;
+	padding-top: 50%;
+	left: 0;
+	top: 0;
+	font-size: 2rem;
+	color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+	height: 100%;
+	background-color: rgba(44, 103, 47, 0);
+	transition: all .2s ease-out;
+}
+
+.product-list .product:active:before {
+	opacity: 1;
+	background-color: rgba(44, 103, 47, 0.7);
+}*/
 
 .product__image {
     background-image: url(images/p1.png);
@@ -243,8 +271,17 @@ a {
 	left: 0;
 	width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-	padding: 1rem 0;
 	text-align: center;
+	z-index: 2;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	transition: height 0.2s ease-out;
+}
+
+.shopping-cart-holder.active {
+	height: 3rem;
+	padding: 1rem 0;
 }
 
 .btn-cart-container > label {
@@ -256,8 +293,8 @@ a {
 	padding: 1rem 2rem;
 	border-radius: 50px;
 	box-shadow: 1px 1px 6px #333;
-
 	transition: transform .1s ease-out;
+
 }
 
 .btn-cart-container > label:hover {
@@ -267,8 +304,7 @@ a {
 .btn-cart-container > label:active {
 	transform: none;
 }
-.btn-cart-container > label:before {
-	content: "Open Cart";
+.btn-cart-container > label {
 	color: #333;
 	font-weight: bold;
 }

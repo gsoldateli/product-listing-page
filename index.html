@@ -144,14 +144,14 @@
 
 		</div>
 	</section>
-	<section class="shopping-cart-holder">
+	<section id="shopping-cart-menu" class="shopping-cart-holder">
 		<div class="container">
 			<div class="btn-cart-container">
-				<label for="show-cart"></label>
+				<label for="show-cart">Show cart <span id="cart-count">(1)</span></label>
 				<input id="show-cart" type="checkbox">
 				<div class="cart-list-container cf">
 					<div class="product sum">
-						<label for="show-cart" class="btn-close-cart">X</label>
+						<label id="btn-show-cart" for="show-cart" class="btn-close-cart">X</label>
 
 						<strong class="total-price">1500.00$</strong>
 						
@@ -172,25 +172,6 @@
 						<div class="product__price"></div>
 						<div class="product__quantity"><input type="number" value="1"></div>
 					</article>	
-
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p12.png');"></div>
-						<div class="product__title">Bernard</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p4.png');"></div>
-						<div class="product__title">Pimple</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-				
 				</div>
 			</div>
 		</div>

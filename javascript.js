@@ -23,6 +23,7 @@ var product = {
 function ShoppingCart() {
 	this.cartList = document.querySelector('.cart-list-container');
 	this.dummyProduct = document.getElementById("dummy");
+	this.btnShoppingCartContainer = document.getElementById("shopping-cart-menu");
 
 	this.addItem = function(productData) {
 		console.log('AddItem:',productData);
@@ -36,6 +37,8 @@ function ShoppingCart() {
 		else {
 			this.cartList.appendChild(this._cloneDummy(productData));	
 		}
+
+		this.updateDom();
 		
 	};
 
@@ -43,10 +46,11 @@ function ShoppingCart() {
 
 		var product = this.dummyProduct.cloneNode(true);
 		var self = this;
+
 		var removeProduct = function(e) {
 			e.preventDefault();
 			this.parentNode.remove();
-			console.log(self.countItems());
+			self.updateDom();
 		};
 
 
@@ -59,13 +63,17 @@ function ShoppingCart() {
 		product.querySelector('.product__image').style.backgroundImage = productData.imgUrl;
 		product.querySelector('.product__remove').addEventListener('click', removeProduct);
 
+		product.querySelector('.product__quantity > input').addEventListener("input",function(){
+			if(parseInt(this.value) === 0) {
+				this.parentNode.parentNode.remove();
+				self.updateDom();
+			}
+		});
+
 		return product;
 
 	},
 
-	this.productAlreadyInCart = function(productId) {
-		return document.querySelector('[data-product-id='+productId+']').length > 0;
-	},
 
 	this.getProductInCart = function(productId) {
 		return this.cartList.querySelector('[data-product-id="'+productId+'"]');
@@ -73,8 +81,7 @@ function ShoppingCart() {
 
 	this.removeItem = function(product) {
 		this.parent.remove();
-		//Remove item from array this.items
-		//Update DOM
+		this.updateDom();
 	};
 
 	this.countItems = function() {
@@ -82,10 +89,24 @@ function ShoppingCart() {
 	};
 
 	this.updateDom = function() {
+		var countItems = this.countItems();
+		console.log(this.btnShoppingCartContainer);
+		document.getElementById('cart-count').innerHTML = "("+countItems+")";
+
+		if(countItems>0 && this.btnShoppingCartContainer.className.indexOf('active') === -1) {
+			this.btnShoppingCartContainer.className += " active";
+		}
+		else if (countItems === 0) {
+			this.btnShoppingCartContainer.className = this.btnShoppingCartContainer.className.replace(/active/g,"");
+		}
 		//update button quantity number.
 		//Update total price
 		//Show/Hide button "Open Cart"
 	};
+
+	this._toggleCartButton = function() {
+
+	},
 
 	this.init = function() {
 
