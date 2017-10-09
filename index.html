@@ -46,15 +46,15 @@
 	<section class="bg-section">
 		<h3 class="section-header">The most reliable pets :)</h3>
 		<div class="product-list cf">
-			<article class="product">	
-				<div class="product__image" style="background-image: url('images/p1.png');"></div>
-				<div class="product__title">Snow</div>
-				<div class="product__description">	Lorem ipsum dolor sit. 	Lorem ipsum dolor sit amet, consectetur.</div>
-				<div class="product__price">149.99$</div>
-				<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
-			</article>
+<article class="product" data-product-id=1>	
+	<div class="product__image" style="background-image: url('images/p1.png');"></div>
+	<div class="product__title">Snow</div>
+	<div class="product__description">	Lorem ipsum dolor sit. 	Lorem ipsum dolor sit amet, consectetur.</div>
+	<div class="product__price">149.99$</div>
+	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
+</article>
 
-<article class="product">	
+<article class="product" data-product-id=2>
 	<div class="product__image" style="background-image: url('images/p2.png');"></div>
 	<div class="product__title">Spike</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -62,7 +62,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=3>	
 	<div class="product__image" style="background-image: url('images/p3.png');"></div>
 	<div class="product__title">Brett</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -70,7 +70,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=4>	
 	<div class="product__image" style="background-image: url('images/p4.png');"></div>
 	<div class="product__title">Zeus</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -78,7 +78,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=5>	
 	<div class="product__image" style="background-image: url('images/p5.png');"></div>
 	<div class="product__title">Thor</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -86,7 +86,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=6>	
 	<div class="product__image" style="background-image: url('images/p6.png');"></div>
 	<div class="product__title">Spark</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -94,7 +94,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=7>	
 	<div class="product__image" style="background-image: url('images/p7.png');"></div>
 	<div class="product__title">Jenkins</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -102,7 +102,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=8>	
 	<div class="product__image" style="background-image: url('images/p8.png');"></div>
 	<div class="product__title">Vince</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -110,7 +110,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=9>	
 	<div class="product__image" style="background-image: url('images/p9.png');"></div>
 	<div class="product__title">Rolf</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -118,7 +118,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=10>	
 	<div class="product__image" style="background-image: url('images/p10.png');"></div>
 	<div class="product__title">Pimple</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -126,7 +126,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=11>	
 	<div class="product__image" style="background-image: url('images/p11.png');"></div>
 	<div class="product__title">Atlas</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -134,7 +134,7 @@
 	<a href="" class="product__btn"><span class="fa fa-cart-plus"></span> Add to cart</a>
 </article>
 
-<article class="product">	
+<article class="product" data-product-id=12>	
 	<div class="product__image" style="background-image: url('images/p12.png');"></div>
 	<div class="product__title">Bernard</div>
 	<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
@@ -163,6 +163,15 @@
 							CHECKOUT
 						</a>					
 					</div>
+					<!-- Dummy Data -->
+					<article id="dummy" class="product" style="display: none;">	
+						<span class="product__remove"></span>
+						<div class="product__image" style="background-image: none;"></div>
+						<div class="product__title"></div>
+						<div class="product__description"></div>
+						<div class="product__price"></div>
+						<div class="product__quantity"><input type="number" value="1"></div>
+					</article>	
 
 					<article class="product">	
 						<span class="product__remove"></span>
@@ -181,42 +190,6 @@
 						<div class="product__price">349.99$</div>
 						<div class="product__quantity"><input type="number" value="1"></div>
 					</article>	
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p12.png');"></div>
-						<div class="product__title">Bernard</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p4.png');"></div>
-						<div class="product__title">Pimple</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p12.png');"></div>
-						<div class="product__title">Bernard</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-
-					<article class="product">	
-						<span class="product__remove"></span>
-						<div class="product__image" style="background-image: url('images/p4.png');"></div>
-						<div class="product__title">Pimple</div>
-						<div class="product__description">	Lorem ipsum dolor it. 	Lorem ipsum dolor sit amet, consectetur.</div>
-						<div class="product__price">349.99$</div>
-						<div class="product__quantity"><input type="number" value="1"></div>
-					</article>	
-				
-
 				
 				</div>
 			</div>
@@ -224,5 +197,6 @@
 	</section>
 	<!-- <div class="banner-content">TESTE</div> -->
 </div>
+	<script src="javascript.js"></script>
 </body>
 </html>
