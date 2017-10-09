@@ -96,26 +96,35 @@ function ShoppingCart() {
 
 	this.updateDom = function() {
 		var countItems = this.countItems();
-		document.getElementById('cart-count').innerHTML = "("+countItems+")";
+		this._updateCartButton(countItems);
+		this._updateCartPrice();
+	};
 
+	this.calcTotalPrice = function() {
+		var total = 0;
+		document.querySelectorAll('.cart-list-container article.product:not(#dummy)').forEach(function(item){
+			var quantity = parseInt(item.querySelector('.product__quantity > input').value);
+			var price = parseFloat(item.querySelector('.product__price').innerHTML.replace('$',''));
+			total += (quantity * price);
+		});
+
+		return total.toFixed(2);
+	};
+
+	this._updateCartPrice = function() {
+		this.cartList.querySelector(".total-price").innerHTML = this.calcTotalPrice() + "$";
+	};
+
+	this._updateCartButton = function(countItems) {
 		if(countItems>0 && this.btnShoppingCartContainer.className.indexOf('active') === -1) {
 			this.btnShoppingCartContainer.className += " active";
 		}
 		else if (countItems === 0) {
 			this.btnShoppingCartContainer.className = this.btnShoppingCartContainer.className.replace(/active/g,"");
 		}
-		//update button quantity number.
-		//Update total price
-		//Show/Hide button "Open Cart"
-	};
 
-	this._toggleCartButton = function() {
-
-	},
-
-	this.init = function() {
-
-	};
+		document.getElementById('cart-count').innerHTML = "("+countItems+")";
+	}
 }
 
 var cart = new ShoppingCart();
