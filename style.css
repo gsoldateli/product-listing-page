@@ -248,6 +248,16 @@ a {
 	color: #673AB7;
 }
 
+.product__price.discount {
+	text-decoration: line-through;
+}
+
+.product__discount {
+    color: #3da741;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
+}
 .product__btn {
     color: #fff;
     display: inline-block;
@@ -482,6 +492,15 @@ a {
 .total-price:before {
 	content: "Total: ";
 	color: orange;
+}
+
+#promoCode {
+	text-transform: uppercase;
+	color: red;
+}
+
+#promoCode.active {
+	color: green;
 }
 
 @media screen and (max-width: 1250px)  {
