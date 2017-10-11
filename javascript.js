@@ -1,24 +1,3 @@
-/**
-Shopping cart
-
-- Add Item
-- Remove Item (When quantity 0)
-- Count Items
-- sumPrice
-- hide/display show button.
-
-**/
-
-var product = {
-	name:'',
-	description:'',
-	price:'',
-	quantity:'',
-	imgUrl:'',
-	render:''
-};
-
-
 function ShoppingCart() {
 	this.cartList = document.querySelector('.cart-list-container');
 	this.dummyProduct = document.getElementById("dummy");
@@ -97,11 +76,6 @@ function ShoppingCart() {
 		return itensCount;
 	};
 
-	this.updateDom = function() {
-		var countItems = this.countItems();
-		this._updateCartButton(countItems);
-		this._updateCartPrice();
-	};
 
 	this.getPromoFunc = function(promoCode) {
 		var func;
@@ -152,7 +126,14 @@ function ShoppingCart() {
 		return codes[promoCode];
 
 
-	},
+	};
+
+
+	this.updateDom = function() {
+		var countItems = this.countItems();
+		this._updateCartButton(countItems);
+		this._updateCartPrice();
+	};
 
 	this.__updateItemDiscountDom = function(price,item,show) {
 		var itemPrice = item.querySelector(".product__price");
@@ -167,7 +148,37 @@ function ShoppingCart() {
 			itemDiscount.innerHTML = "";	
 		}
 
-	}
+	};
+
+
+	this._updateCartPrice = function() {
+		this.cartList.querySelector(".total-price").innerHTML = this.calcTotalPrice(this.currentPromoCode) + "$";
+	};
+
+	this._updateCartButton = function(countItems) {
+		if(countItems>0 && this.btnShoppingCartContainer.className.indexOf('active') === -1) {
+			this.btnShoppingCartContainer.className += " active";
+		}
+		else if (countItems === 0) {
+			this.btnShoppingCartContainer.className = this.btnShoppingCartContainer.className.replace(/active/g,"");
+		}
+
+		document.getElementById('cart-count').innerHTML = "("+countItems+")";
+	};
+
+
+	this._updatePromoCodeDom = function(promoInput) {
+		
+			this.applyPromoCode(promoInput.value);
+			console.log(promoInput.value, this.currentPromoCode);
+			if(promoInput.value.toUpperCase() === this.currentPromoCode) {
+				promoInput.className += " active ";
+			}
+			else {
+				promoInput.className = promoInput.className.replace(/ active /g,"");
+			}
+		
+	};		
 
 	this.applyPromoCode = function (promoCode) {
 		promoCode = promoCode.toUpperCase();
@@ -191,8 +202,6 @@ function ShoppingCart() {
 		if(promoCode) {
 			promoFunction = this.getPromoFunc(promoCode);	
 		}
-
-		console.log('promoFunction',promoFunction);
 		
 		this._getCartItems().forEach(function(item){
 			var quantity = parseInt(item.querySelector('.product__quantity > input').value);
@@ -212,20 +221,6 @@ function ShoppingCart() {
 		return document.querySelectorAll('.cart-list-container article.product:not(#dummy)');
 	}
 
-	this._updateCartPrice = function() {
-		this.cartList.querySelector(".total-price").innerHTML = this.calcTotalPrice(this.currentPromoCode) + "$";
-	};
-
-	this._updateCartButton = function(countItems) {
-		if(countItems>0 && this.btnShoppingCartContainer.className.indexOf('active') === -1) {
-			this.btnShoppingCartContainer.className += " active";
-		}
-		else if (countItems === 0) {
-			this.btnShoppingCartContainer.className = this.btnShoppingCartContainer.className.replace(/active/g,"");
-		}
-
-		document.getElementById('cart-count').innerHTML = "("+countItems+")";
-	};
 
 	this.init = function() {
 		this._registerAddToCartEvent();
@@ -259,18 +254,6 @@ function ShoppingCart() {
 		});
 	};
 
-	this._updatePromoCodeDom = function(promoInput) {
-		
-			this.applyPromoCode(promoInput.value);
-			console.log(promoInput.value, this.currentPromoCode);
-			if(promoInput.value.toUpperCase() === this.currentPromoCode) {
-				promoInput.className += " active ";
-			}
-			else {
-				promoInput.className = promoInput.className.replace(/ active /g,"");
-			}
-		
-	};
 }
 
 var cart = new ShoppingCart().init();

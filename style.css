@@ -65,6 +65,27 @@ a {
 	width: 70%;
 }
 
+.tooltip {
+	position: relative;
+}
+
+.tooltip__info {
+	position: absolute;
+	display: none;
+	left: 50%;
+	transform: translate(-50%,-100%);
+	margin-top: -1rem;
+	width: 90%;
+
+	background-color: #333;
+	color: #fff;
+	text-align: left;
+}
+
+.tooltip:hover > .tooltip__info {
+	display: block;
+	
+}
 .background-top {
   position: absolute;
   left: 0;
