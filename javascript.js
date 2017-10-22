@@ -27,8 +27,8 @@ function ShoppingCart() {
 
 		var removeProduct = function(e) {
 			e.preventDefault();
-			this.parentNode.remove();
-			self.updateDom();
+			$D(this.parentNode).removeAnim("exclude", 900, function(){self.updateDom();});
+			
 		};
 
 
@@ -41,9 +41,11 @@ function ShoppingCart() {
 		product.querySelector('.product__image').style.backgroundImage = productData.imgUrl;
 		product.querySelector('.product__remove').addEventListener('click', removeProduct);
 
-		product.querySelector('.product__quantity > input').addEventListener("input",function(){
+		product.querySelector('.product__quantity > input').addEventListener("input",function(e){
 			if(parseInt(this.value) === 0) {
-				this.parentNode.parentNode.remove();
+				$D(this.parentNode.parentNode).removeAnim("exclude", 900, function(){self.updateDom();});
+				//this.parentNode.parentNode.remove();
+				
 			}
 			self._updatePromoCodeDom(document.getElementById("promoCode"));
 			self.updateDom();
@@ -254,7 +256,87 @@ function ShoppingCart() {
 		});
 	};
 
-}
+};
+
+var $D = function DomUtils(element) {
+	this.el = element;
+
+	this.addClass = function(add) {
+		if(this.hasClass(" "+add+" ")) return this;
+
+		this.el.className += " "+ add+" ";
+		return this;
+	};
+
+	this.removeClass = function(remove) {
+		if(!this.hasClass(remove)) return this;
+	    
+	    var newClassName = "";
+	    var i;
+	    var classes = this.el.className.split(" ");
+
+	    for(i = 0; i < classes.length; i++) {
+	        if(classes[i] !== remove) {
+	            newClassName += classes[i] + " ";
+	        }
+	    }
+	    
+	    this.el.className = newClassName;
+
+	    return this;
+	};
+
+	this.hasClass = function(cls) {
+		console.log(this.el.className);
+		return this.el.className.indexOf(cls) > -1;
+	};
+
+	this.removeAnim = function(animClass,milliseconds,cbFunc) {
+		this.addClass(animClass);
+		console.log(this.el);
+
+		var removeDom = function(){
+			this.el.remove();
+			cbFunc();
+		};
+
+		setTimeout(removeDom, milliseconds);
+	};
+
+	return this;
+};
+
+
+
+/*
+
+HTMLElement.prototype.cssAnimEnds = function(cbFunc) {
+	var self = this;
+	var whichTransitionEvent = function(){
+		var t;
+	    var el = self;
+	    var transitions = {
+	      'transition':'transitionend',
+	      'OTransition':'oTransitionEnd',
+	      'MozTransition':'transitionend',
+	      'WebkitTransition':'webkitTransitionEnd'
+	    }
+
+	    for(t in transitions){
+	        if( el.style[t] !== undefined ){
+	            return transitions[t];
+	        }
+	    }
+	};
+
+	var transitionEvent = whichTransitionEvent();
+	console.log(transitionEvent);
+	transitionEvent && this.addEventListener(transitionEvent, function() {
+			
+			console.log('Transition complete!  This is the callback, no library needed!');
+	});
+};
+*/
 
 var cart = new ShoppingCart().init();
 

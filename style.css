@@ -611,3 +611,44 @@ a {
 		display: none;
 	}
 }
+
+.exclude {
+  animation-duration: 1s;
+  animation-name: exclude;
+}
+/*
+.btn-cart-container:hover > label {
+  animation-duration: 0.3s;
+  animation-name: addToCart;
+}*/
+
+/* Animations */
+@keyframes exclude {
+	from {
+		
+	}
+
+	to {
+		transform: rotateY(720deg) scale(0.1);
+		opacity: 0;
+	}
+}
+
+
+@keyframes addToCart {
+	25% {
+	    transform: rotate(5deg) translateY(-3px);
+   	}
+
+   	50% {
+	    transform: rotate(-5deg) translateY(0px);
+   	}
+
+	75% {
+	    transform: rotate(5deg) translateY(-3px);
+   	}
+
+   	100% {
+	    transform: rotate(-5deg) translateY(0px);
+   	}   	
+}
