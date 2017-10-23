@@ -1,5 +1,6 @@
 function ShoppingCart() {
 	this.cartList = document.querySelector('.cart-list-container');
+	this.cartCount = document.getElementById('cart-count');
 	this.dummyProduct = document.getElementById("dummy");
 	this.btnShoppingCartContainer = document.getElementById("shopping-cart-menu");
 	this.currentPromoCode;
@@ -15,6 +16,9 @@ function ShoppingCart() {
 		else {
 			this.cartList.appendChild(this._cloneDummy(productData));	
 		}
+		var btnCart = document.querySelector('.btn-cart-container > label');
+		console.log("Shake::");
+		$D(btnCart).callbackAnim("shake",300);
 
 		this.updateDom();
 		
@@ -27,8 +31,10 @@ function ShoppingCart() {
 
 		var removeProduct = function(e) {
 			e.preventDefault();
-			$D(this.parentNode).removeAnim("exclude", 900, function(){self.updateDom();});
-			
+			$D(this.parentNode).callbackAnim("exclude",900,function(){
+				this.el.remove();
+				self.updateDom();
+			});
 		};
 
 
@@ -43,12 +49,17 @@ function ShoppingCart() {
 
 		product.querySelector('.product__quantity > input').addEventListener("input",function(e){
 			if(parseInt(this.value) === 0) {
-				$D(this.parentNode.parentNode).removeAnim("exclude", 900, function(){self.updateDom();});
-				//this.parentNode.parentNode.remove();
-				
+				$D(this.parentNode.parentNode).callbackAnim("exclude",900,function(){
+					this.el.remove();
+					self._updatePromoCodeDom(document.getElementById("promoCode"));
+					self.updateDom();									
+				});
 			}
-			self._updatePromoCodeDom(document.getElementById("promoCode"));
-			self.updateDom();
+			else {
+				self._updatePromoCodeDom(document.getElementById("promoCode"));
+				self.updateDom();				
+			}
+
 		});
 
 		return product;
@@ -158,26 +169,27 @@ function ShoppingCart() {
 	};
 
 	this._updateCartButton = function(countItems) {
-		if(countItems>0 && this.btnShoppingCartContainer.className.indexOf('active') === -1) {
-			this.btnShoppingCartContainer.className += " active";
+		if(countItems>0 && !$D(this.btnShoppingCartContainer).hasClass('active')) {
+			$D(this.btnShoppingCartContainer).addClass("active");
 		}
 		else if (countItems === 0) {
-			this.btnShoppingCartContainer.className = this.btnShoppingCartContainer.className.replace(/active/g,"");
+			$D(this.btnShoppingCartContainer).removeClass("active");
 		}
 
-		document.getElementById('cart-count').innerHTML = "("+countItems+")";
+		this.cartCount.innerHTML = "("+countItems+")";	
+
+		
 	};
 
 
 	this._updatePromoCodeDom = function(promoInput) {
-		
 			this.applyPromoCode(promoInput.value);
-			console.log(promoInput.value, this.currentPromoCode);
+			
 			if(promoInput.value.toUpperCase() === this.currentPromoCode) {
-				promoInput.className += " active ";
+				$D(promoInput).addClass("active");
 			}
 			else {
-				promoInput.className = promoInput.className.replace(/ active /g,"");
+				$D(promoInput).removeClass("active");
 			}
 		
 	};		
@@ -258,8 +270,15 @@ function ShoppingCart() {
 
 };
 
-var $D = function DomUtils(element) {
+function DomUtils(element) {
 	this.el = element;
+
+	this.getEl = function() {
+		return this.el;
+	}
+    this.hasClass = function(cls) {
+        return this.el.className.indexOf(cls) > -1;
+    };
 
 	this.addClass = function(add) {
 		if(this.hasClass(" "+add+" ")) return this;
@@ -273,8 +292,8 @@ var $D = function DomUtils(element) {
 	    
 	    var newClassName = "";
 	    var i;
-	    var classes = this.el.className.split(" ");
-
+	    var classes = this.el.className.split(" ").filter(function(clsName){return clsName;});
+	    console.log(classes);
 	    for(i = 0; i < classes.length; i++) {
 	        if(classes[i] !== remove) {
 	            newClassName += classes[i] + " ";
@@ -282,61 +301,33 @@ var $D = function DomUtils(element) {
 	    }
 	    
 	    this.el.className = newClassName;
-
+	    console.log(this.el.className);
 	    return this;
 	};
 
-	this.hasClass = function(cls) {
-		console.log(this.el.className);
-		return this.el.className.indexOf(cls) > -1;
-	};
-
-	this.removeAnim = function(animClass,milliseconds,cbFunc) {
+	this.callbackAnim = function(animClass,milliseconds,cbFunc) {
 		this.addClass(animClass);
-		console.log(this.el);
-
-		var removeDom = function(){
-			this.el.remove();
-			cbFunc();
+		var self = this;
+		var cb = function() {
+			console.log('CB:',this.el);
+			self.removeClass(animClass);
+			
+			if(cbFunc) {
+				cbFunc.bind(self)();	
+			}
 		};
 
-		setTimeout(removeDom, milliseconds);
-	};
+		setTimeout(cb, milliseconds);
+	};	
 
 	return this;
 };
 
+$D = function(element) {
+	var dEl = new DomUtils(element);
+	return dEl;
+}
 
-
-/*
-
-HTMLElement.prototype.cssAnimEnds = function(cbFunc) {
-	var self = this;
-	var whichTransitionEvent = function(){
-		var t;
-	    var el = self;
-	    var transitions = {
-	      'transition':'transitionend',
-	      'OTransition':'oTransitionEnd',
-	      'MozTransition':'transitionend',
-	      'WebkitTransition':'webkitTransitionEnd'
-	    }
-
-	    for(t in transitions){
-	        if( el.style[t] !== undefined ){
-	            return transitions[t];
-	        }
-	    }
-	};
-
-	var transitionEvent = whichTransitionEvent();
-	console.log(transitionEvent);
-	transitionEvent && this.addEventListener(transitionEvent, function() {
-			
-			console.log('Transition complete!  This is the callback, no library needed!');
-	});
-};
-*/
 
 var cart = new ShoppingCart().init();
 
