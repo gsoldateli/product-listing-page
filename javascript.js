@@ -17,7 +17,7 @@ function ShoppingCart() {
 			this.cartList.appendChild(this._cloneDummy(productData));	
 		}
 		var btnCart = document.querySelector('.btn-cart-container > label');
-		console.log("Shake::");
+
 		$D(btnCart).callbackAnim("shake",300);
 
 		this.updateDom();
@@ -293,7 +293,7 @@ function DomUtils(element) {
 	    var newClassName = "";
 	    var i;
 	    var classes = this.el.className.split(" ").filter(function(clsName){return clsName;});
-	    console.log(classes);
+
 	    for(i = 0; i < classes.length; i++) {
 	        if(classes[i] !== remove) {
 	            newClassName += classes[i] + " ";
@@ -301,7 +301,7 @@ function DomUtils(element) {
 	    }
 	    
 	    this.el.className = newClassName;
-	    console.log(this.el.className);
+
 	    return this;
 	};
 
@@ -309,7 +309,6 @@ function DomUtils(element) {
 		this.addClass(animClass);
 		var self = this;
 		var cb = function() {
-			console.log('CB:',this.el);
 			self.removeClass(animClass);
 			
 			if(cbFunc) {
