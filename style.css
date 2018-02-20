@@ -92,7 +92,7 @@ a {
   top: 0;
   width: 100%;
   padding-top: 45%;
-  background: url(images/bg.jpg) no-repeat center center; 
+  background: url(../images/bg.jpg) no-repeat center center; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -241,7 +241,7 @@ a {
 }*/
 
 .product__image {
-    background-image: url(images/p1.png);
+    background-image: url(../images/p1.png);
     width: 100%;
     padding-top: 60%;
     background-size: contain;
